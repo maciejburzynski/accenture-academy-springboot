@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.web.WebProperties;
 @Entity
 @Data
 @NoArgsConstructor
-public class ChurchDao {
+class ChurchDao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

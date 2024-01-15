@@ -18,4 +18,7 @@ class ChurchService {
     void addChurch(ChurchDao churchDao){
         churchRepository.save(churchDao);
     }
+    void addChurch(ChurchDto churchDto){
+        churchRepository.save(ChurchMapper.mapDtoToDao(churchDto));
+    }
 }
