@@ -11,14 +11,16 @@ import java.util.List;
 class ChurchService {
 
     private final ChurchRepository churchRepository;
+
     List<ChurchDao> getAllChurches() {
         return churchRepository.findAll();
     }
 
-    void addChurch(ChurchDao churchDao){
+    void addChurch(ChurchDao churchDao) {
         churchRepository.save(churchDao);
     }
-    void addChurch(ChurchDto churchDto){
+
+    void addChurch(ChurchDto churchDto) {
         churchRepository.save(ChurchMapper.mapDtoToDao(churchDto));
     }
 
@@ -26,5 +28,13 @@ class ChurchService {
         return churchRepository
                 .findById(id)
                 .orElseThrow(() -> new ChurchNotFoundException("Church with id " + id + " not found"));
+    }
+
+    public void update(ChurchDto churchDto, Long id) {
+        churchRepository.save(ChurchMapper.mapDtoToDao(churchDto, id));
+    }
+
+    public void deleteById(Long id) {
+        churchRepository.deleteById(id);
     }
 }

@@ -15,4 +15,16 @@ public class ChurchMapper {
         return churchDao;
     }
 
+    static ChurchDao mapDtoToDao(ChurchDto churchDto, Long id) {
+        ChurchDao churchDao = new ChurchDao();
+        churchDao.setId(id);
+        churchDao.setName(churchDto.getName());
+        churchDao.setNameOfCity(churchDto.getNameOfCity());
+        churchDao.setBudget(churchDto.getBudget());
+        churchDao.setNumberOfSeats(churchDto.getNumberOfSeats());
+        churchDao.setNumberOfMembers(churchDto.getNumberOfMembers());
+
+        return churchDao;
+    }
+
 }

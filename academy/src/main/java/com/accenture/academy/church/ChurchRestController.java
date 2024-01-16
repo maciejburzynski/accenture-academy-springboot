@@ -1,6 +1,7 @@
 package com.accenture.academy.church;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,4 +36,18 @@ class ChurchRestController {
     void addChurch(@RequestBody ChurchDto churchDto) {
         churchService.addChurch(churchDto);
     }
+
+
+    @PutMapping(path = "/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void updateChurch(@RequestBody ChurchDto churchDto, @PathVariable Long id){
+        churchService.update(churchDto, id);
+    }
+
+    @DeleteMapping(path = "/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void deleteChurchById(@PathVariable Long id){
+        churchService.deleteById(id);
+    }
+
 }
