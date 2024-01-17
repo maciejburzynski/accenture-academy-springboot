@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/churches")
@@ -15,7 +16,10 @@ class ChurchRestController {
     private final ChurchService churchService;
 
     @GetMapping
-    List<ChurchDao> getAllChurches() {
+    List<ChurchDao> getAllChurches(@RequestParam(required = false) Optional<String> name) {
+        if(name.isPresent()){
+            return churchService.getAllByName(name);
+        }
         return churchService.getAllChurches();
     }
 
