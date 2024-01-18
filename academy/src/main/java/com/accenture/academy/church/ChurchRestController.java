@@ -1,5 +1,6 @@
 package com.accenture.academy.church;
 
+import jakarta.servlet.http.Cookie;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +29,7 @@ class ChurchRestController {
         try {
             return ResponseEntity
                     .status(200)
+                    .header("eluwina","byku")
                     .body(churchService.getChurchById(id));
         } catch (ChurchNotFoundException exception) {
             return ResponseEntity
