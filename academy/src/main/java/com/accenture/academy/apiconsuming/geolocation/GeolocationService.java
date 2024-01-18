@@ -3,6 +3,7 @@ package com.accenture.academy.apiconsuming.geolocation;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -20,6 +21,10 @@ public class GeolocationService {
 
     private final GeolocationConfig config;
 
+
+    @Value("${accenture.academy.api-key-from-value}")
+    private String apiKey;
+
     @PostConstruct
     void getGeolocation() throws IOException, InterruptedException {
 
@@ -27,7 +32,7 @@ public class GeolocationService {
         HttpRequest httpRequest = HttpRequest
                 .newBuilder()
                 .GET()
-                .uri(create("https://api.geoapify.com/v1/ipinfo?&apiKey=" + config.getApikey()))
+                .uri(create("https://api.geoapify.com/v1/ipinfo?&apiKey=" + apiKey)) // albo config.getApiKey()
                 .build();
 
         HttpResponse httpResponse = httpClient
@@ -36,9 +41,7 @@ public class GeolocationService {
         log.info(httpResponse.body().toString());
 
 
-
     }
-
 
 
 }

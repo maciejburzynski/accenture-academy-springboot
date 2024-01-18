@@ -1,6 +1,7 @@
 package com.accenture.academy.apiconsuming.joke;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -16,13 +17,15 @@ import static java.net.URI.create;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class JokeService {
+
+    private final HttpClient httpClient;
 
 
     @EventListener(ApplicationReadyEvent.class)
     public void getJoke() throws IOException, InterruptedException {
 
-        HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest httpRequest = HttpRequest
                 .newBuilder()
                 .GET()
@@ -52,7 +55,6 @@ public class JokeService {
 
     public Joke getRandomJoke() throws IOException, InterruptedException {
 
-        HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest httpRequest = HttpRequest
                 .newBuilder()
                 .GET()
