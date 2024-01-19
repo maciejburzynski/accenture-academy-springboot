@@ -1,15 +1,13 @@
 package com.accenture.academy.parish;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping(path = "/api/parishes")
 public class ParishRestController {
     private final ParishService parishService;
 
@@ -22,6 +20,12 @@ public class ParishRestController {
     @PostMapping
     void addParish(@RequestBody ParishDto parishDto){
         parishService.addParish(parishDto);
+    }
+
+    @PatchMapping("/{parishId}")
+    void assignPriestToParish(@RequestBody PriestAssignmentDto priestAssignmentDto,
+                              @PathVariable Long parishId){
+        parishService.assignPriestToParish(priestAssignmentDto, parishId);
     }
 
 
