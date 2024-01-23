@@ -16,8 +16,13 @@ public class PriestDao {
     @GeneratedValue(strategy = AUTO)
     Long id;
     String name;
+    @Column(name = "height")
     Integer heightInCm;
+    @Transient
     Integer age;
+
+    @Embedded
+    Location location;
 
     public PriestDao(String name, Integer heightInCm, Integer age) {
         this.name = name;
