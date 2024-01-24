@@ -9,6 +9,7 @@ public class PriestService {
 
     private final PriestRepository priestRepository;
 
+
     public PriestDao getPriestById(Long id) {
         return priestRepository
                 .findById(id)
@@ -18,5 +19,8 @@ public class PriestService {
 
     public void addPriest(PriestDao priestDao) {
         priestRepository.save(priestDao);
+    }
+    public void addPriest(PriestDto priestDto) {
+        priestRepository.save(PriestMapper.mapDtoToDao(priestDto));
     }
 }

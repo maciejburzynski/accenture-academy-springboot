@@ -9,11 +9,11 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-class ChurchService {
+public class ChurchService {
 
     private final ChurchRepository churchRepository;
 
-    List<ChurchDao> getAllChurches() {
+    public List<ChurchDao> getAllChurches() {
         return churchRepository.findAll();
     }
 

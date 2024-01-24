@@ -13,6 +13,12 @@ public class PriestRestController {
 
     private final PriestService priestService;
 
+    @PostMapping
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void addPriest(@RequestBody PriestDto priestDto) {
+        priestService.addPriest(priestDto);
+    }
+
     @GetMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     PriestDao getPriestById(@PathVariable Long id) {

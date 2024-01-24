@@ -29,8 +29,8 @@ public class SecurityConfig {
     public SecurityFilterChain configure(HttpSecurity httpSecurity) throws Exception {
 
         httpSecurity.authorizeHttpRequests(request -> request
-                .requestMatchers(AntPathRequestMatcher.antMatcher("/api/**")).hasRole("USER")
-                .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
+//                   .requestMatchers(AntPathRequestMatcher.antMatcher("/api/**")).permitAll()
+//                .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
                 .anyRequest().permitAll());
         httpSecurity.httpBasic(Customizer.withDefaults());
         httpSecurity.csrf(csrf -> csrf.disable());
